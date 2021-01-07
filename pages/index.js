@@ -1,9 +1,13 @@
 import { Heading, Page } from "@shopify/polaris";
 
 const Index = () => (
-  <Page>
-    <Heading>Shopify app with Node and React 🎉</Heading>
-  </Page>
+  <Page
+    title="Product"
+    primaryAction={{
+      content:'Save',
+      onAction: () => console.log('clicked')
+    }}
+  />
 );
 
 export default Index;
