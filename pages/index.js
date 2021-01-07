@@ -1,13 +1,32 @@
+import { ResourcePicker } from "@shopify/app-bridge-react";
 import { Heading, Page } from "@shopify/polaris";
 
-const Index = () => (
-  <Page
-    title="Product"
-    primaryAction={{
-      content:'Save',
-      onAction: () => console.log('clicked')
-    }}
-  />
-);
+class Index extends React.Component {
+  state = {
+    open: false
+  }
+  render() {
+    return (
+      <Page
+        title="Product Selector"
+        primaryAction={{
+          content: "Add Product",
+          onAction: () => this.setState({open:true})
+        }}
+      >
+        <ResourcePicker
+          resourceType="Product"
+          open={this.state.open}
+          onCancel={() => this.setState({open: false})}
+          onSelection={(resources) => this.handleSelection(resources)}
+        />
+      </Page>
+    );
+  }
+  handleSelection(resources){
+    this.setState({open:false})
+    console.log(resources);
+  }
+}
 
 export default Index;
